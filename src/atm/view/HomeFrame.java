@@ -4,6 +4,7 @@
  */
 package atm.view;
 
+import atm.controllers.CurrentAccount;
 import com.formdev.flatlaf.FlatIntelliJLaf;
 import javax.swing.UIManager;
 
@@ -16,8 +17,21 @@ public class HomeFrame extends javax.swing.JFrame {
     /**
      * Creates new form HomeFrame
      */
-    public HomeFrame() {
+    
+    CurrentAccount account;
+    private String name;
+    private float balance;
+    
+    public HomeFrame(CurrentAccount account) {
         initComponents();
+        this.account = account;
+        
+        this.name = account.getName();
+        this.balance = account.getBalance();
+        
+        this.welcomeMessage.setText("WELCOME " + this.name.toUpperCase());
+        this.balanceDisplay.setText("BALANCE: " + String.format("₱%,.2f", this.balance));
+        
     }
 
     /**
@@ -34,9 +48,10 @@ public class HomeFrame extends javax.swing.JFrame {
         sendButton = new javax.swing.JButton();
         withrawButton1 = new javax.swing.JButton();
         checkBalance = new javax.swing.JButton();
+        welcomeMessage = new javax.swing.JLabel();
+        balanceDisplay = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(500, 500));
         setMinimumSize(new java.awt.Dimension(500, 500));
 
         jPanel1.setBackground(new java.awt.Color(0, 51, 255));
@@ -59,12 +74,22 @@ public class HomeFrame extends javax.swing.JFrame {
 
         sendButton.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         sendButton.setText("Send Money");
+        sendButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sendButtonActionPerformed(evt);
+            }
+        });
 
         withrawButton1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         withrawButton1.setText("Withraw Cash");
 
         checkBalance.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         checkBalance.setText("Check Balance");
+
+        welcomeMessage.setFont(new java.awt.Font("Microsoft YaHei UI", 1, 18)); // NOI18N
+        welcomeMessage.setText("WELCOME");
+
+        balanceDisplay.setText("BALANCE: ");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -77,19 +102,28 @@ public class HomeFrame extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addComponent(withrawButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(checkBalance, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(checkBalance, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(11, 11, 11)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(balanceDisplay)
+                            .addComponent(welcomeMessage))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(149, 149, 149)
+                .addGap(28, 28, 28)
+                .addComponent(welcomeMessage)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(balanceDisplay)
+                .addGap(83, 83, 83)
                 .addComponent(sendButton, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(checkBalance, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(withrawButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(151, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -116,9 +150,25 @@ public class HomeFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void sendButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendButtonActionPerformed
+        // TODO add your handling code here:
+       
+        
+    }//GEN-LAST:event_sendButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
+    
+    public void setDisplay()
+    {
+        
+        this.welcomeMessage.setText("WELsCOME " + this.account.getName());
+        System.out.println(this.account.getName());
+        
+        
+    }
+    
     public void homeFrame() {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -134,18 +184,26 @@ public class HomeFrame extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
+        
+       
+
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new HomeFrame().setVisible(true);
+                
+                new HomeFrame(account).setVisible(true);
+                
+               
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel balanceDisplay;
     private javax.swing.JButton checkBalance;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JButton sendButton;
+    private javax.swing.JLabel welcomeMessage;
     private javax.swing.JButton withrawButton1;
     // End of variables declaration//GEN-END:variables
 }

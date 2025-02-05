@@ -395,8 +395,9 @@ public class PinFrame extends javax.swing.JFrame {
             if(account != null)
             {
                 this.dispose();
-                homePage = new HomeFrame();
+                homePage = new HomeFrame(this.account);
                 homePage.homeFrame();     
+               
                 
             }else
             {
