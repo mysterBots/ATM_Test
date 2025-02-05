@@ -6,8 +6,6 @@ package atm;
 
 import atm.view.PinFrame;
 
-
-
 /**
  *
  * @author BotZ
@@ -22,16 +20,9 @@ public class ATM {
         PinFrame mainFrame = new PinFrame();
         
         mainFrame.enterPin();
-        
-        
-        
-        
-        
-        
-        
+
         //mainFrame.enterPin();
-        
-        
+
     }
     
 }
