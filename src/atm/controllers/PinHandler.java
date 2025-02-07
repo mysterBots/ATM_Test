@@ -21,7 +21,7 @@ public class PinHandler {
     public CurrentAccount checkPin(String userPin)
     {
         
-        String filePath = "C:\\Users\\BotZ\\Documents\\NetBeansProjects\\ATM\\res\\accounts.csv";
+        String filePath = "res/accounts.csv";
         String line;
         String csvSplitBy = ",";
         
